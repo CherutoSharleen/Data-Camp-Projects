@@ -1,0 +1,7 @@
+[
+  {"id": "book_intro_ml", "features": [0.9, 0.1, 0.2, 0.3]},
+  {"id": "book_python_basics", "features": [0.8, 0.2, 0.1, 0.2]},
+  {"id": "book_graph_algorithms", "features": [0.2, 0.8, 0.4, 0.7]},
+  {"id": "book_data_viz", "features": [0.5, 0.2, 0.9, 0.4]},
+  {"id": "book_search_systems", "features": [0.3, 0.9, 0.3, 0.8]}
+]
