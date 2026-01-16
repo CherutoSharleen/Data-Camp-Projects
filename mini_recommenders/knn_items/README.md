@@ -59,7 +59,3 @@ All catalog entries and vectors are fictional/synthetic.
 
 - Current vectors are hand-crafted and tiny.
 - Add min-max scaling, metadata filtering, and explanation text.
-
-## Disclosure
-
-This is a retrospective educational addition created now. Historical author dates may be used for commit metadata and do not indicate the actual execution date of this work.
