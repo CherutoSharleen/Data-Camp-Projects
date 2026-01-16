@@ -1,6 +1,6 @@
 import unittest
 
-from recommender import cosine_similarity, recommend_similar
+from recommender import cosine_similarity, explain_recommendation, recommend_similar
 
 
 class RecommenderTests(unittest.TestCase):
@@ -17,6 +17,15 @@ class RecommenderTests(unittest.TestCase):
         ]
         recs = recommend_similar(items, "a", top_k=2)
         self.assertEqual(recs[0][0], "b")
+
+    def test_explanation_contains_similarity_metrics(self) -> None:
+        items = [
+            {"id": "a", "features": [1.0, 0.2, 0.0]},
+            {"id": "b", "features": [0.9, 0.1, 0.1]},
+        ]
+        explanation = explain_recommendation(items, "a", "b")
+        self.assertIn("cosine_similarity", explanation)
+        self.assertGreater(explanation["shared_dimensions"], 0)
 
 
 if __name__ == "__main__":

@@ -31,3 +31,15 @@ def recommend_similar(items: list[dict], item_id: str, top_k: int = 3) -> list[t
         scored.append((item["id"], score))
     scored.sort(key=lambda pair: pair[1], reverse=True)
     return scored[:top_k]
+
+
+def explain_recommendation(items: list[dict], source_id: str, candidate_id: str) -> dict[str, float]:
+    lookup = {item["id"]: item for item in items}
+    if source_id not in lookup or candidate_id not in lookup:
+        raise ValueError("unknown source or candidate id")
+    source = lookup[source_id]["features"]
+    candidate = lookup[candidate_id]["features"]
+    return {
+        "cosine_similarity": cosine_similarity(source, candidate),
+        "shared_dimensions": sum(1 for a, b in zip(source, candidate) if a > 0 and b > 0),
+    }
