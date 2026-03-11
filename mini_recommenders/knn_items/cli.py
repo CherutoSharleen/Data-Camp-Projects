@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from pathlib import Path
 
-from recommender import load_items, recommend_similar
+from recommender import explain_recommendation, load_items, recommend_similar
 
 
 def main() -> None:
@@ -16,6 +16,8 @@ def main() -> None:
     print("Top recommendations:")
     for candidate_id, score in recommendations:
         print(f"- {candidate_id}: {score:.4f}")
+        details = explain_recommendation(items, item_id, candidate_id)
+        print(f"  shared_dimensions={details['shared_dimensions']}")
 
 
 if __name__ == "__main__":
