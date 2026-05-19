@@ -43,3 +43,14 @@ def explain_recommendation(items: list[dict], source_id: str, candidate_id: str)
         "cosine_similarity": cosine_similarity(source, candidate),
         "shared_dimensions": sum(1 for a, b in zip(source, candidate) if a > 0 and b > 0),
     }
+
+
+def recommend_with_min_similarity(
+    items: list[dict],
+    item_id: str,
+    min_similarity: float,
+    top_k: int = 3,
+) -> list[tuple[str, float]]:
+    ranked = recommend_similar(items, item_id, top_k=max(top_k, len(items)))
+    filtered = [row for row in ranked if row[1] >= min_similarity]
+    return filtered[:top_k]
