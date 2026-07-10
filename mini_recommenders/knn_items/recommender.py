@@ -14,6 +14,10 @@ def cosine_similarity(a: list[float], b: list[float]) -> float:
     return dot / (norm_a * norm_b)
 
 
+def vector_length(values: list[float]) -> float:
+    return math.sqrt(sum(v * v for v in values))
+
+
 def load_items(path: Path) -> list[dict]:
     return json.loads(path.read_text(encoding="utf-8"))
 

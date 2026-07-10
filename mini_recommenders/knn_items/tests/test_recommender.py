@@ -5,6 +5,7 @@ from recommender import (
     explain_recommendation,
     recommend_similar,
     recommend_with_min_similarity,
+    vector_length,
 )
 
 
@@ -40,6 +41,9 @@ class RecommenderTests(unittest.TestCase):
         ]
         recs = recommend_with_min_similarity(items, "a", min_similarity=0.5, top_k=3)
         self.assertEqual([r[0] for r in recs], ["b"])
+
+    def test_vector_length(self) -> None:
+        self.assertEqual(vector_length([3.0, 4.0]), 5.0)
 
 
 if __name__ == "__main__":
