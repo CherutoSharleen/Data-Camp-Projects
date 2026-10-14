@@ -5,6 +5,7 @@ from recommender import (
     explain_recommendation,
     recommend_similar,
     recommend_with_min_similarity,
+    top_candidate_id,
     vector_length,
 )
 
@@ -44,6 +45,14 @@ class RecommenderTests(unittest.TestCase):
 
     def test_vector_length(self) -> None:
         self.assertEqual(vector_length([3.0, 4.0]), 5.0)
+
+    def test_top_candidate_id(self) -> None:
+        items = [
+            {"id": "a", "features": [1.0, 0.0, 0.0]},
+            {"id": "b", "features": [0.9, 0.1, 0.0]},
+            {"id": "c", "features": [0.1, 0.9, 0.0]},
+        ]
+        self.assertEqual(top_candidate_id(items, "a"), "b")
 
 
 if __name__ == "__main__":

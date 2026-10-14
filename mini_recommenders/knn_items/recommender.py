@@ -18,6 +18,13 @@ def vector_length(values: list[float]) -> float:
     return math.sqrt(sum(v * v for v in values))
 
 
+def top_candidate_id(items: list[dict], item_id: str) -> str | None:
+    ranked = recommend_similar(items, item_id, top_k=1)
+    if not ranked:
+        return None
+    return ranked[0][0]
+
+
 def load_items(path: Path) -> list[dict]:
     return json.loads(path.read_text(encoding="utf-8"))
 
